@@ -86,3 +86,6 @@ document.querySelectorAll('[data-split]').forEach((element) => {
     element.appendChild(span);
   });
 });
+<article class="capsule-card reveal">
+  <article class="capsule-card reveal reveal-delay-1">
+  <article class="capsule-card reveal reveal-delay-2">

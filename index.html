@@ -26,12 +26,22 @@
       <span class="sr-only">Abrir menú</span>
     </button>
 
-    <nav class="site-nav" id="siteNav" aria-label="Navegación principal">
-      <a href="#collection">Collection</a>
-      <a href="#campaign">Campaign</a>
-      <a href="#story">About</a>
-      <a href="https://www.instagram.com/lebhe/" target="_blank" rel="noopener">Instagram</a>
-    </nav>
+   <nav class="site-nav" id="siteNav" aria-label="Navegación principal">
+  <a href="#collection" data-split>DROP 001</a>
+  <a href="#story" data-split>ABOUT US</a>
+  <a href="#lebhe-men" data-split>LEBHE MEN</a>
+  <a href="#lebhe-woman" data-split>LEBHE WOMAN</a>
+  <a href="#contact" data-split>CONTACT</a>
+
+  <button
+    class="cart-link"
+    type="button"
+    data-split
+    title="Disponible próximamente"
+  >
+    CART (0)
+  </button>
+</nav>
   </header>
 
   <main id="top">
@@ -77,15 +87,18 @@
       </div>
 
       <div class="editorial-grid">
-        <article class="image-card image-card--tall reveal">
+        <article
+  class="image-card image-card--tall reveal"
+  id="lebhe-woman"
+>
           <img src="assets/product-woman.jpg" alt="Conjunto femenino de tenis LEBHE en pista de tierra batida">
           <div class="image-card-overlay">
             <span>01</span><h3>WOMEN</h3><p>Court uniform, redefined.</p>
           </div>
         </article>
 
-        <article class="image-card reveal">
-          <img src="assets/hero-man.jpg" alt="Modelo con chándal blanco LEBHE en una pista de tenis">
+        <article class="image-card reveal" id="lebhe-men">
+  <img src="assets/hero-man.jpg" alt="Modelo con chándal blanco LEBHE en una pista de tenis">
           <div class="image-card-overlay">
             <span>02</span><h3>MEN</h3><p>Movement beyond the baseline.</p>
           </div>
@@ -153,7 +166,7 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+<footer class="site-footer" id="contact">
     <div>
       <p class="footer-wordmark">LEBHE</p>
       <p>Tennis apparel, redefined.</p>

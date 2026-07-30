@@ -242,7 +242,29 @@ button { font: inherit; }
   .custom-cursor {
     display: none;
   }
+/* Letras interactivas */
+[data-split] .letter {
+  display: inline-block;
+  transition:
+    transform 220ms ease,
+    color 220ms ease,
+    opacity 220ms ease;
 }
+
+[data-split] .letter--space {
+  width: 0.34em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-split] .letter:hover {
+    color: var(--clay);
+    transform: translateY(-4px);
+  }
+
+  .site-header:not(.scrolled) [data-split] .letter:hover {
+    color: var(--cream);
+  }
+}}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:auto; }
   *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }

@@ -195,6 +195,136 @@ button { font: inherit; }
   .coming-logo { max-width:140px; }
   .site-footer { grid-template-columns:1fr; align-items:start; }
   .copyright { margin-top:20px; }
+}/* Cápsulas de color */
+.capsules {
+  padding-top: 45px;
+  background: var(--cream);
+}
+
+.capsule-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.capsule-card {
+  --accent: var(--clay);
+
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #d8d0c6;
+  color: var(--white);
+}
+
+.capsule-card[data-accent="orange"] {
+  --accent: #b95a2c;
+}
+
+.capsule-card[data-accent="lilac"] {
+  --accent: #9b86b8;
+}
+
+.capsule-card[data-accent="green"] {
+  --accent: #123f2b;
+}
+
+.capsule-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 48%,
+      rgba(0, 0, 0, 0.72) 100%
+    );
+}
+
+.capsule-card img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(.2, .75, .2, 1);
+}
+
+.capsule-card:hover img {
+  transform: scale(1.035);
+}
+
+.capsule-card__content {
+  position: absolute;
+  right: 28px;
+  bottom: 26px;
+  left: 28px;
+  z-index: 2;
+}
+
+.capsule-card__content span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  letter-spacing: 0.17em;
+}
+
+.capsule-card__content span::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.capsule-card__content h3 {
+  margin: 10px 0 0;
+  font-size: clamp(30px, 4vw, 62px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+@media (max-width: 850px) {
+  .capsule-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .capsule-card {
+    min-height: 68vh;
+    aspect-ratio: auto;
+  }
+}/* Acabado editorial */
+body {
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--clay);
+  color: var(--white);
+}
+
+section[id],
+article[id],
+footer[id] {
+  scroll-margin-top: 110px;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 5px;
+}
+
+.image-card img,
+.capsule-card img,
+.campaign-image img,
+.details-image img,
+.lookbook-grid img {
+  filter: saturate(0.94) contrast(1.025);
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:auto; }

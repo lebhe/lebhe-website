@@ -35,3 +35,37 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 document.getElementById('year').textContent = new Date().getFullYear();
+const customCursor = document.querySelector('.custom-cursor');
+
+const hasFinePointer = window.matchMedia(
+  '(hover: hover) and (pointer: fine)'
+).matches;
+
+if (customCursor && hasFinePointer) {
+  document.addEventListener(
+    'pointermove',
+    (event) => {
+      customCursor.style.left = `${event.clientX}px`;
+      customCursor.style.top = `${event.clientY}px`;
+      customCursor.classList.add('is-visible');
+    },
+    { passive: true }
+  );
+
+  document
+    .querySelectorAll('a, button, .set-card, .image-card')
+    .forEach((element) => {
+      element.addEventListener('pointerenter', () => {
+        customCursor.classList.add('is-hovering');
+      });
+
+      element.addEventListener('pointerleave', () => {
+        customCursor.classList.remove('is-hovering');
+      });
+    });
+
+  document.documentElement.addEventListener('mouseleave', () => {
+    customCursor.classList.remove('is-visible');
+    customCursor.classList.remove('is-hovering');
+  });
+}

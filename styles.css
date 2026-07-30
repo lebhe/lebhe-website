@@ -418,6 +418,149 @@ button:focus-visible {
 .site-header:not(.scrolled) .site-nav a:hover {
   color: #ffffff;
 }
+/* Colecciones LEBHE Men y LEBHE Woman */
+.gender-collections {
+  padding: 80px 24px;
+  background: #f4f1ea;
+}
+
+.gender-collection {
+  max-width: 1500px;
+  margin: 0 auto 120px;
+}
+
+.gender-collection:last-child {
+  margin-bottom: 0;
+}
+
+.gender-collection .section-heading {
+  margin-bottom: 32px;
+}
+
+.gender-collection .section-heading h2 {
+  margin: 8px 0 0;
+  font-size: clamp(42px, 7vw, 100px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+/* Tres colores por colección */
+.set-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.set-card {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #d9d4cc;
+  color: #ffffff;
+}
+
+.set-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 48%,
+      rgba(0, 0, 0, 0.72) 100%
+    );
+  pointer-events: none;
+}
+
+.set-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+
+  transition:
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 500ms ease;
+}
+
+.set-card:hover img {
+  transform: scale(1.035);
+  filter: brightness(0.94);
+}
+
+.set-card__label {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+  z-index: 2;
+}
+
+.set-card__label span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.set-card__label span::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+/* Color identificativo de cada set */
+.set-card[data-color="orange"] .set-card__label span::before {
+  background: #b95b32;
+}
+
+.set-card[data-color="lilac"] .set-card__label span::before {
+  background: #665078;
+}
+
+.set-card[data-color="green"] .set-card__label span::before {
+  background: #153d2d;
+}
+
+.set-card__label h3 {
+  margin: 10px 0 0;
+  font-size: clamp(24px, 3vw, 46px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  .set-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Móvil */
+@media (max-width: 650px) {
+  .gender-collections {
+    padding: 60px 14px;
+  }
+
+  .gender-collection {
+    margin-bottom: 80px;
+  }
+
+  .set-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .set-card {
+    min-height: 68vh;
+    aspect-ratio: auto;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:auto; }
   *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }

@@ -196,6 +196,53 @@ button { font: inherit; }
   .site-footer { grid-template-columns:1fr; align-items:start; }
   .copyright { margin-top:20px; }
 }
+/* Cursor circular personalizado */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: difference;
+
+  transform: translate(-50%, -50%);
+  transition:
+    width 220ms ease,
+    height 220ms ease,
+    background-color 220ms ease,
+    opacity 180ms ease;
+}
+
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+
+.custom-cursor.is-active {
+  width: 54px;
+  height: 54px;
+  background-color: #ffffff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body,
+  a,
+  button {
+    cursor: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:auto; }
   *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }

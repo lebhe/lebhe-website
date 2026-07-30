@@ -63,3 +63,26 @@ if (customCursor && hasFinePointer) {
     customCursor.classList.remove('is-visible');
   });
 }
+document.querySelectorAll('[data-split]').forEach((element) => {
+  const originalText = element.textContent.trim();
+
+  element.setAttribute('aria-label', originalText);
+  element.textContent = '';
+
+  [...originalText].forEach((character) => {
+    const span = document.createElement('span');
+
+    span.className =
+      character === ' '
+        ? 'letter letter--space'
+        : 'letter';
+
+    span.textContent =
+      character === ' '
+        ? '\u00A0'
+        : character;
+
+    span.setAttribute('aria-hidden', 'true');
+    element.appendChild(span);
+  });
+});

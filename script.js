@@ -35,3 +35,57 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 document.getElementById('year').textContent = new Date().getFullYear();
+const customCursor = document.querySelector('.custom-cursor');
+const hasFinePointer = window.matchMedia(
+  '(hover: hover) and (pointer: fine)'
+).matches;
+
+if (customCursor && hasFinePointer) {
+  window.addEventListener('pointermove', (event) => {
+    customCursor.style.left = `${event.clientX}px`;
+    customCursor.style.top = `${event.clientY}px`;
+    customCursor.classList.add('is-visible');
+  });
+
+  document.querySelectorAll(
+    'a, button, .image-card, .capsule-card'
+  ).forEach((element) => {
+    element.addEventListener('pointerenter', () => {
+      customCursor.classList.add('is-active');
+    });
+
+    element.addEventListener('pointerleave', () => {
+      customCursor.classList.remove('is-active');
+    });
+  });
+
+  document.documentElement.addEventListener('mouseleave', () => {
+    customCursor.classList.remove('is-visible');
+  });
+}
+document.querySelectorAll('[data-split]').forEach((element) => {
+  const originalText = element.textContent.trim();
+
+  element.setAttribute('aria-label', originalText);
+  element.textContent = '';
+
+  [...originalText].forEach((character) => {
+    const span = document.createElement('span');
+
+    span.className =
+      character === ' '
+        ? 'letter letter--space'
+        : 'letter';
+
+    span.textContent =
+      character === ' '
+        ? '\u00A0'
+        : character;
+
+    span.setAttribute('aria-hidden', 'true');
+    element.appendChild(span);
+  });
+});
+<article class="capsule-card reveal">
+  <article class="capsule-card reveal reveal-delay-1">
+  <article class="capsule-card reveal reveal-delay-2">

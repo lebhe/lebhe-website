@@ -269,3 +269,29 @@ button { font: inherit; }
   html { scroll-behavior:auto; }
   *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
 }
+.cart-link {
+  position: relative;
+  padding: 10px 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+
+.cart-link::after {
+  content: "";
+  position: absolute;
+  right: 100%;
+  bottom: 4px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transition: right 300ms ease;
+}
+
+.cart-link:hover::after {
+  right: 0;
+}

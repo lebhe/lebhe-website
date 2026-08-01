@@ -342,85 +342,111 @@
       class="product-catalog section"
       aria-label="LEBHE Men products"
     >
+      
+     <!-- PRODUCTO 1: CAMISETA -->
+<article
+  class="product-item reveal"
+  data-product
+  data-product-name="Technical T-shirt"
+>
 
-      <!-- PRODUCTO 1: CAMISETA -->
-      <article
-        class="product-item reveal"
-        data-product
-        data-product-name="Technical T-shirt"
+  <div class="product-media">
+    <img
+      src="assets/men-shirt-orange-front.jpg"
+      alt="LEBHE Technical T-shirt — Clay — front view"
+      data-product-image
+    >
+  </div>
+
+  <div class="product-information">
+
+    <span class="product-number">01 / 02</span>
+
+    <h2>TECHNICAL<br>T-SHIRT</h2>
+
+    <p class="product-description">
+      Lightweight performance T-shirt with a clean athletic
+      construction, breathable technical fabric and embroidered
+      LEBHE monogram.
+    </p>
+
+    <p class="color-heading">Select color</p>
+
+    <div
+      class="color-options"
+      aria-label="Technical T-shirt colors"
+    >
+
+      <button
+        class="color-swatch is-active"
+        type="button"
+        style="--swatch: #b95b32"
+        data-product-color
+        data-front-image="assets/men-shirt-orange-front.jpg"
+        data-back-image="assets/men-shirt-orange-back.jpg"
+        data-label="Clay"
+        aria-label="Select Clay"
+      ></button>
+
+      <button
+        class="color-swatch"
+        type="button"
+        style="--swatch: #8f78a9"
+        data-product-color
+        data-front-image="assets/men-shirt-lilac-front.jpg"
+        data-back-image="assets/men-shirt-lilac-back.jpg"
+        data-label="Lilac"
+        aria-label="Select Lilac"
+      ></button>
+
+      <button
+        class="color-swatch"
+        type="button"
+        style="--swatch: #153d2d"
+        data-product-color
+        data-front-image="assets/men-shirt-green-front.jpg"
+        data-back-image="assets/men-shirt-green-back.jpg"
+        data-label="Wimbledon Green"
+        aria-label="Select Wimbledon Green"
+      ></button>
+
+    </div>
+
+    <p class="selected-color">
+      Color:
+      <strong data-selected-color>Clay</strong>
+    </p>
+
+    <div
+      class="view-options"
+      aria-label="Select shirt view"
+    >
+      <button
+        class="view-button is-active"
+        type="button"
+        data-product-view="front"
       >
+        Front
+      </button>
 
-        <div class="product-media">
-          <img
-            src="assets/green-man.jpg"
-            alt="LEBHE technical T-shirt in Wimbledon Green"
-            data-product-image
-          >
-        </div>
+      <button
+        class="view-button"
+        type="button"
+        data-product-view="back"
+      >
+        Back
+      </button>
+    </div>
 
-        <div class="product-information">
+    <ul class="product-features">
+      <li><span>01</span>Technical performance fabric</li>
+      <li><span>02</span>Lightweight and breathable</li>
+      <li><span>03</span>LEBHE front and neck detailing</li>
+    </ul>
 
-          <span class="product-number">01 / 02</span>
+  </div>
 
-          <h2>TECHNICAL<br>T-SHIRT</h2>
-
-          <p class="product-description">
-            Lightweight performance T-shirt with a clean athletic
-            construction, breathable technical fabric and embroidered
-            LEBHE monogram.
-          </p>
-
-          <p class="color-heading">Select color</p>
-
-          <div
-            class="color-options"
-            aria-label="Technical T-shirt colors"
-          >
-
-            <button
-              class="color-swatch"
-              type="button"
-              style="--swatch: #b95b32"
-              data-product-color
-              data-image="assets/orange-man.jpg"
-              data-label="Clay"
-              aria-label="Select Clay"
-            ></button>
-
-            <button
-              class="color-swatch"
-              type="button"
-              style="--swatch: #665078"
-              data-product-color
-              data-image="assets/lilac-man.jpg"
-              data-label="Dark Lilac"
-              aria-label="Select Dark Lilac"
-            ></button>
-
-            <button
-              class="color-swatch is-active"
-              type="button"
-              style="--swatch: #153d2d"
-              data-product-color
-              data-image="assets/green-man.jpg"
-              data-label="Wimbledon Green"
-              aria-label="Select Wimbledon Green"
-            ></button>
-
-          </div>
-
-          <p class="selected-color">
-            Color:
-            <strong data-selected-color>Wimbledon Green</strong>
-          </p>
-
-          <ul class="product-features">
-            <li><span>01</span>Technical polyester construction</li>
-            <li><span>02</span>Lightweight and breathable</li>
-            <li><span>03</span>Premium embroidered monogram</li>
-          </ul>
-
-        </div>
+</article>
 
       </article>
 

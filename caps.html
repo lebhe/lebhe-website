@@ -216,14 +216,16 @@
       text-align: center;
     }
 .cap-media img {
-  object-position: 12% 50%;
-  transform: scale(1.48);
+  object-position: center;
+  transform: none;
   transition:
     opacity 180ms ease,
-    object-position 450ms ease,
     transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.cap-media:hover img {
+  transform: scale(1.015);
+}
 .cap-media:hover img {
   transform: scale(1.48);
 }
@@ -333,81 +335,85 @@
   aria-label="LEBHE Caps"
 >
 
-  <article class="product-item reveal">
+ <article
+  class="product-item reveal"
+  data-product-name="Court cap"
+>
 
-    <div class="product-media cap-media">
-      <img
-        src="caps.jpg"
-        alt="LEBHE Heritage White court cap"
-        data-cap-image
-      >
-    </div>
+  <div class="product-media cap-media">
+    <img
+      src="assets/cap-green.jpg"
+      alt="LEBHE Court Cap — Wimbledon Green — front and back views"
+      data-cap-image
+    >
+  </div>
 
-    <div class="product-information">
+  <div class="product-information">
 
-      <span class="product-number">01 / 01</span>
+    <span class="product-number">01 / 01</span>
 
-      <h2>COURT<br>CAP</h2>
+    <h2>COURT<br>CAP</h2>
 
-      <p class="product-description">
-        Lightweight technical tennis cap with breathable side
-        perforations, an adjustable construction and embroidered
-        LEBHE monogram.
-      </p>
+    <p class="product-description">
+      Lightweight technical tennis cap with breathable perforated
+      panels, an adjustable snapback closure and embroidered LEBHE
+      detailing on the front and rear label.
+    </p>
 
-      <p class="color-heading">Select variation</p>
+    <p class="color-heading">Select color</p>
 
-      <div
-        class="color-options"
-        aria-label="Court cap variations"
-      >
+    <div
+      class="color-options"
+      aria-label="Court cap colors"
+    >
 
-        <button
-          class="color-swatch is-active"
-          type="button"
-          style="--swatch: #eee9df"
-          data-cap-option
-          data-position="12% 50%"
-          data-label="Heritage White"
-          aria-label="Select Heritage White"
-        ></button>
+      <button
+        class="color-swatch is-active"
+        type="button"
+        style="--swatch: #153d2d"
+        data-cap-option
+        data-image="assets/cap-green.jpg"
+        data-label="Wimbledon Green"
+        aria-label="Select Wimbledon Green"
+      ></button>
 
-        <button
-          class="color-swatch"
-          type="button"
-          style="--swatch: #a84f2b"
-          data-cap-option
-          data-position="50% 50%"
-          data-label="Clay"
-          aria-label="Select Clay"
-        ></button>
+      <button
+        class="color-swatch"
+        type="button"
+        style="--swatch: #b95b32"
+        data-cap-option
+        data-image="assets/cap-clay.jpg"
+        data-label="Clay"
+        aria-label="Select Clay"
+      ></button>
 
-        <button
-          class="color-swatch"
-          type="button"
-          style="--swatch: #153d2d"
-          data-cap-option
-          data-position="88% 50%"
-          data-label="Wimbledon White"
-          aria-label="Select Wimbledon White"
-        ></button>
-
-      </div>
-
-      <p class="selected-color">
-        Variation:
-        <strong data-selected-cap>Heritage White</strong>
-      </p>
-
-      <ul class="product-features">
-        <li><span>01</span>Lightweight technical construction</li>
-        <li><span>02</span>Breathable perforated side panels</li>
-        <li><span>03</span>Embroidered LEBHE monogram</li>
-      </ul>
+      <button
+        class="color-swatch"
+        type="button"
+        style="--swatch: #8f78a9"
+        data-cap-option
+        data-image="assets/cap-lilac.jpg"
+        data-label="Lilac"
+        aria-label="Select Lilac"
+      ></button>
 
     </div>
 
-  </article>
+    <p class="selected-color">
+      Color:
+      <strong data-selected-cap>Wimbledon Green</strong>
+    </p>
+
+    <ul class="product-features">
+      <li><span>01</span>Lightweight technical construction</li>
+      <li><span>02</span>Breathable perforated side panels</li>
+      <li><span>03</span>Adjustable snapback closure</li>
+      <li><span>04</span>Embroidered front logo and rear label</li>
+    </ul>
+
+  </div>
+
+</article>
 
 </section>
 
@@ -452,9 +458,14 @@
   <div class="custom-cursor" aria-hidden="true"></div>
 
  <script>
-  const capImage = document.querySelector("[data-cap-image]");
-  const selectedCap = document.querySelector("[data-selected-cap]");
-  const capOptions = document.querySelectorAll("[data-cap-option]");
+  const capImage =
+    document.querySelector("[data-cap-image]");
+
+  const selectedCap =
+    document.querySelector("[data-selected-cap]");
+
+  const capOptions =
+    document.querySelectorAll("[data-cap-option]");
 
   capOptions.forEach((button) => {
     button.addEventListener("click", () => {
@@ -463,12 +474,18 @@
       });
 
       button.classList.add("is-active");
+
       capImage.style.opacity = "0";
 
       window.setTimeout(() => {
-        capImage.style.objectPosition = button.dataset.position;
-        capImage.alt = `LEBHE ${button.dataset.label} court cap`;
-        selectedCap.textContent = button.dataset.label;
+        capImage.src = button.dataset.image;
+
+        capImage.alt =
+          `LEBHE Court Cap — ${button.dataset.label} — front and back views`;
+
+        selectedCap.textContent =
+          button.dataset.label;
+
         capImage.style.opacity = "1";
       }, 180);
     });

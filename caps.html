@@ -451,42 +451,29 @@
 
   <div class="custom-cursor" aria-hidden="true"></div>
 
-  <script>
-    document.querySelectorAll("[data-product]").forEach((product) => {
-      const image = product.querySelector("[data-product-image]");
-      const selectedColor =
-        product.querySelector("[data-selected-color]");
+ <script>
+  const capImage = document.querySelector("[data-cap-image]");
+  const selectedCap = document.querySelector("[data-selected-cap]");
+  const capOptions = document.querySelectorAll("[data-cap-option]");
 
-      const productName = product.dataset.productName;
+  capOptions.forEach((button) => {
+    button.addEventListener("click", () => {
+      capOptions.forEach((option) => {
+        option.classList.remove("is-active");
+      });
 
-      product
-        .querySelectorAll("[data-product-color]")
-        .forEach((button) => {
-          button.addEventListener("click", () => {
-            product
-              .querySelectorAll("[data-product-color]")
-              .forEach((option) => {
-                option.classList.remove("is-active");
-              });
+      button.classList.add("is-active");
+      capImage.style.opacity = "0";
 
-            button.classList.add("is-active");
-
-            image.style.opacity = "0";
-
-            window.setTimeout(() => {
-              image.src = button.dataset.image;
-              image.alt =
-                `${productName} — ${button.dataset.label}`;
-
-              selectedColor.textContent =
-                button.dataset.label;
-
-              image.style.opacity = "1";
-            }, 180);
-          });
-        });
+      window.setTimeout(() => {
+        capImage.style.objectPosition = button.dataset.position;
+        capImage.alt = `LEBHE ${button.dataset.label} court cap`;
+        selectedCap.textContent = button.dataset.label;
+        capImage.style.opacity = "1";
+      }, 180);
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>

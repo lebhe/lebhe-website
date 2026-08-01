@@ -573,41 +573,89 @@
   <div class="custom-cursor" aria-hidden="true"></div>
 
   <script>
-    document.querySelectorAll("[data-product]").forEach((product) => {
-      const image = product.querySelector("[data-product-image]");
-      const selectedColor =
-        product.querySelector("[data-selected-color]");
+  document.querySelectorAll("[data-product]").forEach((product) => {
+    const image = product.querySelector("[data-product-image]");
+    const selectedColorText =
+      product.querySelector("[data-selected-color]");
 
-      const productName = product.dataset.productName;
+    const colorButtons =
+      product.querySelectorAll("[data-product-color]");
 
-      product
-        .querySelectorAll("[data-product-color]")
-        .forEach((button) => {
-          button.addEventListener("click", () => {
-            product
-              .querySelectorAll("[data-product-color]")
-              .forEach((option) => {
-                option.classList.remove("is-active");
-              });
+    const viewButtons =
+      product.querySelectorAll("[data-product-view]");
 
-            button.classList.add("is-active");
+    const productName = product.dataset.productName;
 
-            image.style.opacity = "0";
+    let selectedColorButton =
+      product.querySelector("[data-product-color].is-active") ||
+      colorButtons[0];
 
-            window.setTimeout(() => {
-              image.src = button.dataset.image;
-              image.alt =
-                `${productName} — ${button.dataset.label}`;
+    let selectedView = "front";
 
-              selectedColor.textContent =
-                button.dataset.label;
+    function changeImage(newImage, label) {
+      if (!newImage) return;
 
-              image.style.opacity = "1";
-            }, 180);
-          });
+      image.style.opacity = "0";
+
+      window.setTimeout(() => {
+        image.src = newImage;
+        image.alt = `${productName} — ${label} — ${selectedView} view`;
+        image.style.opacity = "1";
+      }, 180);
+    }
+
+    function updateProductImage() {
+      if (!selectedColorButton) return;
+
+      const label = selectedColorButton.dataset.label;
+
+      const newImage =
+        selectedView === "back"
+          ? selectedColorButton.dataset.backImage
+          : selectedColorButton.dataset.frontImage;
+
+      /*
+        The shirt uses front/back images.
+        The shorts temporarily continue using data-image.
+      */
+      changeImage(
+        newImage || selectedColorButton.dataset.image,
+        label
+      );
+    }
+
+    colorButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        colorButtons.forEach((option) => {
+          option.classList.remove("is-active");
         });
+
+        button.classList.add("is-active");
+        selectedColorButton = button;
+
+        if (selectedColorText) {
+          selectedColorText.textContent =
+            button.dataset.label;
+        }
+
+        updateProductImage();
+      });
     });
-  </script>
+
+    viewButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        viewButtons.forEach((option) => {
+          option.classList.remove("is-active");
+        });
+
+        button.classList.add("is-active");
+        selectedView = button.dataset.productView;
+
+        updateProductImage();
+      });
+    });
+  });
+</script>
 
 </body>
 </html>

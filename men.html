@@ -350,7 +350,7 @@
 data-product-name="Technical T-shirt"
 data-product-price="85"
 >
->
+
 
   <div class="product-media">
     <img
@@ -798,7 +798,7 @@ let selectedSize = "";
       });
     });
 
-    viewButtons.forEach((button) => {
+        viewButtons.forEach((button) => {
       button.addEventListener("click", () => {
         viewButtons.forEach((option) => {
           option.classList.remove("is-active");
@@ -806,31 +806,31 @@ let selectedSize = "";
 
         button.classList.add("is-active");
         selectedView = button.dataset.productView;
-
         updateProductImage();
-     sizeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    sizeButtons.forEach((option) => {
-      option.classList.remove("is-active");
+      });
     });
 
-    button.classList.add("is-active");
-    selectedSize = button.dataset.size;
+    sizeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        sizeButtons.forEach((option) => {
+          option.classList.remove("is-active");
+        });
 
-    if (addToCartButton) {
-      addToCartButton.disabled = false;
-      addToCartButton.textContent = "Add to bag";
+        button.classList.add("is-active");
+        selectedSize = button.dataset.size;
 
-      addToCartButton.setAttribute(
-        "aria-label",
-        `Add ${productName}, size ${selectedSize}, to bag`
-      );
-    }
+        if (addToCartButton) {
+          addToCartButton.disabled = false;
+          addToCartButton.textContent = "Add to bag";
+
+          addToCartButton.setAttribute(
+            "aria-label",
+            `Add ${productName}, size ${selectedSize}, to bag`
+          );
+        }
+      });
+    });
   });
-}); 
-  
-});
 </script>
-
 </body>
 </html>

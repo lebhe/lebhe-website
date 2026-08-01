@@ -735,7 +735,11 @@ data-product-price="85"
 
     const viewButtons =
       product.querySelectorAll("[data-product-view]");
+const sizeButtons =
+  product.querySelectorAll("[data-size-button]");
 
+const addToCartButton =
+  product.querySelector("[data-add-to-cart]");
     const productName = product.dataset.productName;
 
     let selectedColorButton =
@@ -743,7 +747,7 @@ data-product-price="85"
       colorButtons[0];
 
     let selectedView = "front";
-
+let selectedSize = "";
     function changeImage(newImage, label) {
       if (!newImage) return;
 
@@ -804,9 +808,28 @@ data-product-price="85"
         selectedView = button.dataset.productView;
 
         updateProductImage();
-      });
+     sizeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    sizeButtons.forEach((option) => {
+      option.classList.remove("is-active");
     });
+
+    button.classList.add("is-active");
+    selectedSize = button.dataset.size;
+
+    if (addToCartButton) {
+      addToCartButton.disabled = false;
+      addToCartButton.textContent = "Add to bag";
+
+      addToCartButton.setAttribute(
+        "aria-label",
+        `Add ${productName}, size ${selectedSize}, to bag`
+      );
+    }
   });
+}); 
+  
+});
 </script>
 
 </body>

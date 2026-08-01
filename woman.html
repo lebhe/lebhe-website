@@ -156,7 +156,28 @@
       display: flex;
       gap: 14px;
     }
+.view-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+}
 
+.view-button {
+  padding: 11px 18px;
+  border: 1px solid rgba(17, 17, 17, 0.3);
+  background: transparent;
+  color: var(--charcoal);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.view-button.is-active {
+  background: var(--charcoal);
+  color: var(--white);
+  border-color: var(--charcoal);
+}
     .color-swatch {
       position: relative;
       width: 38px;

@@ -1271,3 +1271,85 @@ body.cart-open .cart-drawer {
     text-align: center;
   }
 }
+/* LEBHE product information accordions */
+
+.product-support {
+  width: 100%;
+  max-width: 360px;
+  margin-top: 30px;
+  border-top: 1px solid rgba(17, 17, 17, 0.22);
+}
+
+.product-support details {
+  border-bottom: 1px solid rgba(17, 17, 17, 0.22);
+}
+
+.product-support summary {
+  min-height: 54px;
+  padding: 16px 2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  list-style: none;
+  cursor: pointer;
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.product-support summary::-webkit-details-marker {
+  display: none;
+}
+
+.product-support summary::after {
+  content: "+";
+
+  flex: 0 0 auto;
+
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
+
+  transition: transform 220ms ease;
+}
+
+.product-support details[open] summary::after {
+  content: "−";
+}
+
+.product-support summary:hover {
+  color: var(--clay);
+}
+
+.product-support summary:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 4px;
+}
+
+.product-support__content {
+  max-width: 330px;
+  padding: 0 2px 20px;
+
+  font-size: 12px;
+  line-height: 1.7;
+  color: rgba(17, 17, 17, 0.62);
+}
+
+.product-support__content p {
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+  .product-support {
+    max-width: none;
+  }
+
+  .product-support summary {
+    min-height: 58px;
+  }
+}

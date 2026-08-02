@@ -1541,3 +1541,148 @@ body.size-guide-open .size-guide-modal {
     right: 16px;
   }
 }
+/* LEBHE product image zoom */
+
+[data-product-image],
+[data-cap-image] {
+  cursor: zoom-in;
+}
+
+.product-zoom-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+
+  background: rgba(8, 15, 12, 0.82);
+  backdrop-filter: blur(7px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 300ms ease,
+    visibility 300ms ease;
+}
+
+.product-zoom-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 410;
+
+  display: grid;
+  place-items: center;
+
+  padding: clamp(24px, 5vw, 70px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 300ms ease,
+    visibility 300ms ease;
+}
+
+body.product-zoom-open {
+  overflow: hidden;
+}
+
+body.product-zoom-open .product-zoom-overlay,
+body.product-zoom-open .product-zoom-modal {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.product-zoom-image {
+  display: block;
+
+  width: auto;
+  max-width: min(920px, 90vw);
+  height: auto;
+  max-height: 88svh;
+
+  object-fit: contain;
+
+  background: #d8d0c6;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+
+  transform: scale(0.96);
+
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.product-zoom-open .product-zoom-image {
+  transform: scale(1);
+}
+
+.product-zoom-close {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  z-index: 420;
+
+  width: 46px;
+  height: 46px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 50%;
+  background: rgba(8, 15, 12, 0.28);
+  color: var(--white);
+
+  font-size: 23px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+.product-zoom-close:hover {
+  background: var(--clay);
+  border-color: var(--clay);
+  color: var(--green);
+  transform: rotate(5deg);
+}
+
+.product-zoom-caption {
+  position: fixed;
+  right: 28px;
+  bottom: 22px;
+  left: 28px;
+  z-index: 420;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (max-width: 560px) {
+  .product-zoom-modal {
+    padding: 74px 14px 58px;
+  }
+
+  .product-zoom-image {
+    max-width: 100%;
+    max-height: 78svh;
+  }
+
+  .product-zoom-close {
+    top: 15px;
+    right: 15px;
+  }
+}

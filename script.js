@@ -576,9 +576,21 @@ document
     return selector.querySelectorAll(".size-button").length > 1;
   });
 
-  if (multiSizeSelectors.length === 0) {
-    return;
-  }
+ const footerSizeGuideItems = Array.from(
+  document.querySelectorAll(".footer-disabled")
+).filter((item) => {
+  return item.textContent
+    .trim()
+    .toLowerCase()
+    .startsWith("size guide");
+});
+
+if (
+  multiSizeSelectors.length === 0 &&
+  footerSizeGuideItems.length === 0
+) {
+  return;
+}
 
   document.body.insertAdjacentHTML(
     "beforeend",
@@ -732,6 +744,29 @@ document
   });
 
   closeButton.addEventListener("click", closeSizeGuide);
+   footerSizeGuideItems.forEach((item) => {
+    const trigger = document.createElement("button");
+
+    trigger.className = "footer-size-guide";
+    trigger.type = "button";
+    trigger.textContent = "Size guide";
+
+    trigger.setAttribute(
+      "aria-label",
+      "Open LEBHE size guide"
+    );
+
+    trigger.setAttribute(
+      "aria-controls",
+      "sizeGuideTitle"
+    );
+
+    item.replaceWith(trigger);
+
+    trigger.addEventListener("click", () => {
+      openSizeGuide(trigger);
+    });
+  });
   overlay.addEventListener("click", closeSizeGuide);
 
   document.addEventListener("keydown", (event) => {

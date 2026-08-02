@@ -1721,3 +1721,28 @@ body.product-zoom-open .product-zoom-image {
   outline: 2px solid var(--clay);
   outline-offset: 5px;
 }
+/* LEBHE active navigation page */
+
+.site-nav a[aria-current="page"] {
+  color: var(--clay);
+}
+
+.site-nav a[aria-current="page"]::after {
+  right: 0;
+}
+
+.site-header:not(.scrolled):not(.menu-active)
+  .site-nav a[aria-current="page"] {
+  color: var(--white);
+}
+
+.site-header.menu-active
+  .site-nav a[aria-current="page"] {
+  color: var(--clay);
+}
+
+@media (max-width: 850px) {
+  .site-nav a[aria-current="page"] {
+    color: var(--clay);
+  }
+}

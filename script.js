@@ -743,3 +743,165 @@ document
     }
   });
 })();
+
+/* LEBHE product image zoom */
+
+(() => {
+  if (document.querySelector("[data-product-zoom-modal]")) {
+    return;
+  }
+
+  const productImages = document.querySelectorAll(
+    "[data-product-image], [data-cap-image]"
+  );
+
+  if (productImages.length === 0) {
+    return;
+  }
+
+  document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+      <div
+        class="product-zoom-overlay"
+        data-product-zoom-overlay
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="product-zoom-modal"
+        data-product-zoom-modal
+        role="dialog"
+        aria-modal="true"
+        aria-label="Expanded product image"
+        aria-hidden="true"
+      >
+        <button
+          class="product-zoom-close"
+          type="button"
+          data-product-zoom-close
+          aria-label="Close expanded image"
+        >
+          ×
+        </button>
+
+        <img
+          class="product-zoom-image"
+          data-product-zoom-image
+          src=""
+          alt=""
+        >
+
+        <p
+          class="product-zoom-caption"
+          data-product-zoom-caption
+        ></p>
+      </div>
+    `
+  );
+
+  const modal = document.querySelector(
+    "[data-product-zoom-modal]"
+  );
+
+  const overlay = document.querySelector(
+    "[data-product-zoom-overlay]"
+  );
+
+  const zoomImage = document.querySelector(
+    "[data-product-zoom-image]"
+  );
+
+  const caption = document.querySelector(
+    "[data-product-zoom-caption]"
+  );
+
+  const closeButton = document.querySelector(
+    "[data-product-zoom-close]"
+  );
+
+  let lastFocusedElement = null;
+
+  function openProductZoom(image) {
+    lastFocusedElement = image;
+
+    const imageSource =
+      image.currentSrc ||
+      image.getAttribute("src");
+
+    const imageDescription =
+      image.getAttribute("alt") ||
+      "LEBHE product image";
+
+    zoomImage.src = imageSource;
+    zoomImage.alt = imageDescription;
+    caption.textContent = imageDescription;
+
+    document.body.classList.add("product-zoom-open");
+
+    modal.setAttribute("aria-hidden", "false");
+    overlay.setAttribute("aria-hidden", "false");
+
+    window.setTimeout(() => {
+      closeButton.focus();
+    }, 300);
+  }
+
+  function closeProductZoom() {
+    document.body.classList.remove("product-zoom-open");
+
+    modal.setAttribute("aria-hidden", "true");
+    overlay.setAttribute("aria-hidden", "true");
+
+    zoomImage.src = "";
+    zoomImage.alt = "";
+    caption.textContent = "";
+
+    lastFocusedElement?.focus();
+  }
+
+  productImages.forEach((image) => {
+    image.setAttribute("tabindex", "0");
+    image.setAttribute("role", "button");
+    image.setAttribute("aria-haspopup", "dialog");
+    image.setAttribute(
+      "aria-label",
+      `Enlarge ${image.alt || "product image"}`
+    );
+
+    image.addEventListener("click", () => {
+      openProductZoom(image);
+    });
+
+    image.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Enter" ||
+        event.key === " "
+      ) {
+        event.preventDefault();
+        openProductZoom(image);
+      }
+    });
+  });
+
+  closeButton.addEventListener(
+    "click",
+    closeProductZoom
+  );
+
+  overlay.addEventListener(
+    "click",
+    closeProductZoom
+  );
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      document.body.classList.contains(
+        "product-zoom-open"
+      )
+    ) {
+      closeProductZoom();
+    }
+  });
+})();

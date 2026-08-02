@@ -69,3 +69,184 @@ if (customCursor && hasFinePointer) {
     customCursor.classList.remove('is-hovering');
   });
 }
+/* LEBHE shopping bag */
+
+(() => {
+  const siteHeader = document.getElementById("siteHeader");
+  const menuButton = document.getElementById("menuToggle");
+  const mobileNavigation = document.getElementById("siteNav");
+
+  if (!siteHeader || !menuButton) {
+    return;
+  }
+
+  const cartTrigger = document.createElement("button");
+
+  cartTrigger.className = "cart-trigger";
+  cartTrigger.type = "button";
+  cartTrigger.setAttribute("aria-expanded", "false");
+  cartTrigger.setAttribute("aria-controls", "cartDrawer");
+
+  cartTrigger.innerHTML = `
+    <span class="cart-trigger__label">Bag</span>
+    <span
+      class="cart-trigger__count"
+      data-cart-count
+      aria-label="0 products in bag"
+    >
+      0
+    </span>
+  `;
+
+  siteHeader.insertBefore(cartTrigger, menuButton);
+
+  document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+      <div
+        class="cart-overlay"
+        data-cart-overlay
+        aria-hidden="true"
+      ></div>
+
+      <aside
+        class="cart-drawer"
+        id="cartDrawer"
+        data-cart-drawer
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cartDrawerTitle"
+        aria-hidden="true"
+      >
+        <div class="cart-drawer__header">
+          <h2
+            class="cart-drawer__title"
+            id="cartDrawerTitle"
+          >
+            Your bag
+          </h2>
+
+          <button
+            class="cart-close"
+            type="button"
+            data-cart-close
+            aria-label="Close shopping bag"
+          >
+            ×
+          </button>
+        </div>
+
+        <div
+          class="cart-items"
+          data-cart-items
+          aria-live="polite"
+        >
+          <div class="cart-empty">
+            <p>Your bag is empty.</p>
+            <span>
+              Select a colour and size to add a LEBHE piece.
+            </span>
+          </div>
+        </div>
+
+        <div class="cart-drawer__footer">
+          <div class="cart-subtotal">
+            <span>Subtotal</span>
+            <span data-cart-subtotal>€0</span>
+          </div>
+
+          <button
+            class="cart-checkout-button"
+            type="button"
+            data-cart-checkout
+            disabled
+          >
+            Checkout
+          </button>
+
+          <p class="cart-checkout-note">
+            Shipping and taxes calculated at checkout.
+          </p>
+        </div>
+      </aside>
+
+      <div
+        class="cart-toast"
+        data-cart-toast
+        role="status"
+        aria-live="polite"
+      >
+        Added to bag
+      </div>
+    `
+  );
+
+  const cartDrawer =
+    document.querySelector("[data-cart-drawer]");
+
+  const cartOverlay =
+    document.querySelector("[data-cart-overlay]");
+
+  const cartClose =
+    document.querySelector("[data-cart-close]");
+
+  const checkoutButton =
+    document.querySelector("[data-cart-checkout]");
+
+  function openCart() {
+    mobileNavigation?.classList.remove("open");
+    siteHeader.classList.remove("menu-active");
+    document.body.classList.remove("menu-open");
+
+    menuButton.setAttribute("aria-expanded", "false");
+
+    document.body.classList.add("cart-open");
+
+    cartTrigger.setAttribute("aria-expanded", "true");
+    cartDrawer.setAttribute("aria-hidden", "false");
+    cartOverlay.setAttribute("aria-hidden", "false");
+
+    window.setTimeout(() => {
+      cartClose.focus();
+    }, 420);
+  }
+
+  function closeCart(restoreFocus = true) {
+    document.body.classList.remove("cart-open");
+
+    cartTrigger.setAttribute("aria-expanded", "false");
+    cartDrawer.setAttribute("aria-hidden", "true");
+    cartOverlay.setAttribute("aria-hidden", "true");
+
+    if (restoreFocus) {
+      cartTrigger.focus();
+    }
+  }
+
+  cartTrigger.addEventListener("click", openCart);
+  cartClose.addEventListener("click", () => closeCart());
+  cartOverlay.addEventListener("click", () => closeCart());
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      document.body.classList.contains("cart-open")
+    ) {
+      closeCart();
+    }
+  });
+
+  if (customCursor && hasFinePointer) {
+    [cartTrigger, cartClose, checkoutButton].forEach(
+      (element) => {
+        element.addEventListener("pointerenter", () => {
+          customCursor.classList.add("is-hovering");
+        });
+
+        element.addEventListener("pointerleave", () => {
+          customCursor.classList.remove("is-hovering");
+        });
+      }
+    );
+  }
+})();

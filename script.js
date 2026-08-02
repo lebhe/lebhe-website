@@ -563,3 +563,183 @@ document
       });
     });
   });
+/* LEBHE global size guide */
+
+(() => {
+  if (document.querySelector("[data-size-guide-modal]")) {
+    return;
+  }
+
+  const multiSizeSelectors = Array.from(
+    document.querySelectorAll(".size-selector")
+  ).filter((selector) => {
+    return selector.querySelectorAll(".size-button").length > 1;
+  });
+
+  if (multiSizeSelectors.length === 0) {
+    return;
+  }
+
+  document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+      <div
+        class="size-guide-overlay"
+        data-size-guide-overlay
+        aria-hidden="true"
+      ></div>
+
+      <section
+        class="size-guide-modal"
+        data-size-guide-modal
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="sizeGuideTitle"
+        aria-hidden="true"
+      >
+        <button
+          class="size-guide-close"
+          type="button"
+          data-size-guide-close
+          aria-label="Close size guide"
+        >
+          ×
+        </button>
+
+        <p class="size-guide-eyebrow">
+          LEBHE sizing
+        </p>
+
+        <h2
+          class="size-guide-title"
+          id="sizeGuideTitle"
+        >
+          Find your fit.
+        </h2>
+
+        <p class="size-guide-intro">
+          Measure directly over lightweight clothing, keeping
+          the tape comfortably close to the body without pulling.
+          Exact garment measurements will be added once final
+          production grading is confirmed.
+        </p>
+
+        <ol class="size-guide-list">
+          <li>
+            <span>01</span>
+            <div>
+              <strong>Chest or bust</strong><br>
+              Measure around the fullest part, keeping the tape
+              horizontal across the back.
+            </div>
+          </li>
+
+          <li>
+            <span>02</span>
+            <div>
+              <strong>Waist</strong><br>
+              Measure around the natural waistline without
+              tightening the tape.
+            </div>
+          </li>
+
+          <li>
+            <span>03</span>
+            <div>
+              <strong>Hips</strong><br>
+              Stand with your feet together and measure around
+              the fullest part of the hips.
+            </div>
+          </li>
+
+          <li>
+            <span>04</span>
+            <div>
+              <strong>Between sizes</strong><br>
+              Choose the larger size for a more relaxed fit or
+              the smaller size for a closer athletic fit.
+            </div>
+          </li>
+        </ol>
+
+        <p class="size-guide-contact">
+          Need personal sizing assistance?
+          <a href="mailto:hello@lebhe.com">
+            hello@lebhe.com
+          </a>
+        </p>
+      </section>
+    `
+  );
+
+  const modal =
+    document.querySelector("[data-size-guide-modal]");
+
+  const overlay =
+    document.querySelector("[data-size-guide-overlay]");
+
+  const closeButton =
+    document.querySelector("[data-size-guide-close]");
+
+  let lastFocusedElement = null;
+
+  function openSizeGuide(trigger) {
+    lastFocusedElement = trigger;
+
+    document.body.classList.add("size-guide-open");
+
+    modal.setAttribute("aria-hidden", "false");
+    overlay.setAttribute("aria-hidden", "false");
+
+    window.setTimeout(() => {
+      closeButton.focus();
+    }, 280);
+  }
+
+  function closeSizeGuide() {
+    document.body.classList.remove("size-guide-open");
+
+    modal.setAttribute("aria-hidden", "true");
+    overlay.setAttribute("aria-hidden", "true");
+
+    lastFocusedElement?.focus();
+  }
+
+  multiSizeSelectors.forEach((selector, index) => {
+    const trigger = document.createElement("button");
+
+    trigger.className = "size-guide-trigger";
+    trigger.type = "button";
+    trigger.textContent = "Size guide";
+
+    trigger.setAttribute(
+      "aria-label",
+      "Open LEBHE size guide"
+    );
+
+    trigger.setAttribute(
+      "aria-controls",
+      "sizeGuideTitle"
+    );
+
+    trigger.dataset.sizeGuideTrigger = index;
+
+    selector.insertAdjacentElement("afterend", trigger);
+
+    trigger.addEventListener("click", () => {
+      openSizeGuide(trigger);
+    });
+  });
+
+  closeButton.addEventListener("click", closeSizeGuide);
+  overlay.addEventListener("click", closeSizeGuide);
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      document.body.classList.contains("size-guide-open")
+    ) {
+      closeSizeGuide();
+    }
+  });
+})();

@@ -542,3 +542,24 @@ if (customCursor && hasFinePointer) {
     );
   }
 })();
+
+/* Keep product information accordions tidy */
+
+document
+  .querySelectorAll(".product-support")
+  .forEach((supportGroup) => {
+    const details =
+      supportGroup.querySelectorAll("details");
+
+    details.forEach((currentDetail) => {
+      currentDetail.addEventListener("toggle", () => {
+        if (!currentDetail.open) return;
+
+        details.forEach((otherDetail) => {
+          if (otherDetail !== currentDetail) {
+            otherDetail.open = false;
+          }
+        });
+      });
+    });
+  });

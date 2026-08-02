@@ -770,7 +770,8 @@
 
  <script>
   document.querySelectorAll("[data-product]").forEach((product) => {
-    const image = product.querySelector("[data-product-image]");
+    const image =
+      product.querySelector("[data-product-image]");
 
     const selectedColorText =
       product.querySelector("[data-selected-color]");
@@ -781,6 +782,12 @@
     const viewButtons =
       product.querySelectorAll("[data-product-view]");
 
+    const sizeButtons =
+      product.querySelectorAll("[data-size-button]");
+
+    const addToCartButton =
+      product.querySelector("[data-add-to-cart]");
+
     const productName = product.dataset.productName;
 
     let selectedColorButton =
@@ -788,6 +795,7 @@
       colorButtons[0];
 
     let selectedView = "front";
+    let selectedSize = "";
 
     function changeImage(newImage, label) {
       if (!newImage) return;
@@ -814,10 +822,6 @@
           ? selectedColorButton.dataset.backImage
           : selectedColorButton.dataset.frontImage;
 
-      /*
-        The shirt uses front/back images.
-        The skirt temporarily continues using data-image.
-      */
       changeImage(
         newImage || selectedColorButton.dataset.image,
         label
@@ -850,12 +854,31 @@
 
         button.classList.add("is-active");
         selectedView = button.dataset.productView;
-
         updateProductImage();
+      });
+    });
+
+    sizeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        sizeButtons.forEach((option) => {
+          option.classList.remove("is-active");
+        });
+
+        button.classList.add("is-active");
+        selectedSize = button.dataset.size;
+
+        if (addToCartButton) {
+          addToCartButton.disabled = false;
+          addToCartButton.textContent = "Add to bag";
+
+          addToCartButton.setAttribute(
+            "aria-label",
+            `Add ${productName}, size ${selectedSize}, to bag`
+          );
+        }
       });
     });
   });
 </script>
-
 </body>
 </html>

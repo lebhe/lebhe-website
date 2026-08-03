@@ -940,3 +940,67 @@ if (
     }
   });
 })();
+/* LEBHE product reassurance */
+
+(() => {
+  document
+    .querySelectorAll("[data-product]")
+    .forEach((product) => {
+      const addToCartButton =
+        product.querySelector("[data-add-to-cart]");
+
+      if (
+        !addToCartButton ||
+        product.querySelector(".product-reassurance")
+      ) {
+        return;
+      }
+
+      const sizeButtonCount =
+        product.querySelectorAll(".size-button").length;
+
+      const sizingMessage =
+        sizeButtonCount > 1
+          ? "Sizing support available"
+          : "Adjustable one-size fit";
+
+      addToCartButton.insertAdjacentHTML(
+        "afterend",
+        `
+          <div
+            class="product-reassurance"
+            aria-label="Product support"
+          >
+            <div class="product-reassurance__item">
+              <i
+                class="bi bi-lightning-charge"
+                aria-hidden="true"
+              ></i>
+
+              <span>Technical performance design</span>
+            </div>
+
+            <div class="product-reassurance__item">
+              <i
+                class="bi bi-rulers"
+                aria-hidden="true"
+              ></i>
+
+              <span>${sizingMessage}</span>
+            </div>
+
+            <div class="product-reassurance__item">
+              <i
+                class="bi bi-envelope"
+                aria-hidden="true"
+              ></i>
+
+              <a href="mailto:hello@lebhe.com">
+                Direct client care
+              </a>
+            </div>
+          </div>
+        `
+      );
+    });
+})();

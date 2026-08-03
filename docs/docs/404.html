@@ -1,1 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="robots"
+    content="noindex, nofollow, noarchive"
+  >
+
+  <title>Coming Soon — 2026</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      overflow: hidden;
+
+      background: #0a0a0a;
+      color: #ffffff;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    }
+
+    .coming-soon {
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .logo {
+      display: block;
+      width: min(260px, 65vw);
+      max-height: 180px;
+      margin: 0 auto 48px;
+
+      object-fit: contain;
+    }
+
+    h1 {
+      margin: 0;
+
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 600;
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+
+    .year {
+      margin: 24px 0 0;
+
+      color: #a3a3a3;
+
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      font-weight: 400;
+      letter-spacing: 0.5em;
+      text-indent: 0.5em;
+    }
+
+    @media (max-width: 500px) {
+      .logo {
+        margin-bottom: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="coming-soon">
+    <img
+      class="logo"
+      src="logo.png"
+      alt="Company logo"
+    >
+
+    <h1>Coming Soon</h1>
+
+    <p class="year">2026</p>
+  </main>
+</body>
+</html>
 

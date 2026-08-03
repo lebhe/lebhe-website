@@ -1916,4 +1916,65 @@ body.product-zoom-open .product-zoom-image {
   .product-reassurance__item {
     min-height: 50px;
   }
+/* LEBHE back to top */
+
+.back-to-top {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 250;
+
+  width: 46px;
+  height: 46px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--white);
+
+  font-size: 16px;
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px);
+
+  transition:
+    opacity 220ms ease,
+    visibility 220ms ease,
+    transform 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--clay);
+  color: var(--green);
+  transform: translateY(-3px);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 4px;
+}
+
+@media (max-width: 560px) {
+  .back-to-top {
+    left: 16px;
+    bottom: 16px;
+
+    width: 44px;
+    height: 44px;
+  }
 }

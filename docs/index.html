@@ -2,125 +2,149 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon — 2026</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="robots"
+    content="noindex, nofollow, noarchive"
+  >
+
+  <title>LEBHE — Coming Soon</title>
 
   <style>
+    :root {
+      --background: #ede1d2;
+      --text: #0a0a0a;
+      --muted: rgba(10, 10, 10, 0.55);
+      --line: rgba(10, 10, 10, 0.25);
+    }
+
     * {
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       margin: 0;
-      padding: 0;
       width: 100%;
       min-height: 100%;
     }
 
     body {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-      overflow: hidden;
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      color: white;
-      text-align: center;
+      min-height: 100svh;
 
       background:
-        radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 35%),
-        radial-gradient(circle at bottom, rgba(255,255,255,0.04), transparent 30%),
-        linear-gradient(180deg, #050505 0%, #0b0b0b 45%, #050505 100%);
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(255, 255, 255, 0.25),
+          transparent 45%
+        ),
+        var(--background);
+
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    .container {
-      max-width: 800px;
-      width: 100%;
+    .page {
+      min-height: 100vh;
+      min-height: 100svh;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    /*
+      This frame crops the large empty areas
+      from the original portrait JPG.
+    */
+    .logo-frame {
+      width: min(760px, 92vw);
+      aspect-ratio: 3.2 / 1;
+
+      overflow: hidden;
+      position: relative;
     }
 
     .logo {
+      width: 100%;
+      height: 100%;
+
       display: block;
-      width: 140px;
-      max-width: 45vw;
-      height: auto;
-      margin: 0 auto 40px;
-      object-fit: contain;
+      object-fit: cover;
+      object-position: center 50%;
+
+      mix-blend-mode: multiply;
     }
 
-    .line {
-      width: 80px;
+    .divider {
+      width: 52px;
       height: 1px;
-      background: rgba(255,255,255,0.25);
-      margin: 0 auto 30px;
+
+      margin: 46px auto 32px;
+      background: var(--line);
     }
 
-    h1 {
+    .status {
       margin: 0;
-      font-size: clamp(3rem, 10vw, 7rem);
-      font-weight: 600;
-      letter-spacing: -0.05em;
-      line-height: 0.95;
-      text-shadow: 0 0 24px rgba(255,255,255,0.08);
-    }
 
-    .subtitle {
-      margin-top: 18px;
-      color: rgba(255,255,255,0.65);
-      font-size: 0.95rem;
-      letter-spacing: 0.35em;
+      font-size: clamp(0.7rem, 1.3vw, 0.85rem);
+      font-weight: 500;
+      letter-spacing: 0.38em;
+      text-indent: 0.38em;
       text-transform: uppercase;
     }
 
     .year {
-      margin-top: 28px;
-      font-size: 1.2rem;
-      color: rgba(255,255,255,0.55);
-      letter-spacing: 0.55em;
-      text-transform: uppercase;
-    }
+      margin: 18px 0 0;
 
-    .small-text {
-      margin-top: 40px;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.35);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+      color: var(--muted);
+      font-size: clamp(0.75rem, 1.4vw, 0.9rem);
+      font-weight: 400;
+      letter-spacing: 0.55em;
+      text-indent: 0.55em;
     }
 
     @media (max-width: 600px) {
-      .logo {
-        width: 110px;
-        margin-bottom: 30px;
+      .page {
+        padding: 32px 18px;
       }
 
-      .subtitle {
-        font-size: 0.8rem;
-        letter-spacing: 0.25em;
+      .logo-frame {
+        width: 94vw;
+        aspect-ratio: 2.45 / 1;
       }
 
-      .year {
-        font-size: 1rem;
-        letter-spacing: 0.4em;
-      }
-
-      .small-text {
-        font-size: 0.75rem;
+      .divider {
+        margin-top: 36px;
       }
     }
   </style>
 </head>
+
 <body>
-  <main class="container">
-    <img class="logo" src="./logo.jpg" alt="Logo">
+  <main class="page">
+    <div class="logo-frame">
+      <img
+        class="logo"
+        src="./logo.jpg"
+        alt="LEBHE"
+      >
+    </div>
 
-    <div class="line"></div>
+    <div class="divider" aria-hidden="true"></div>
 
-    <h1>Coming Soon</h1>
-    <p class="subtitle">A new chapter is arriving</p>
+    <p class="status">Coming Soon</p>
     <p class="year">2026</p>
-
-    <p class="small-text">LEBHE</p>
   </main>
 </body>
 </html>

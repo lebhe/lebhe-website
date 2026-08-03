@@ -1820,3 +1820,39 @@ body.product-zoom-open .product-zoom-image {
     border-bottom: 0;
   }
 }
+/* Active footer size guide */
+
+.footer-column .footer-size-guide {
+  display: block;
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+  color: var(--white);
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.footer-column .footer-size-guide:hover {
+  color: var(--clay);
+  transform: translateX(4px);
+}
+
+.footer-column .footer-size-guide:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 5px;
+}

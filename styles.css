@@ -1856,3 +1856,64 @@ body.product-zoom-open .product-zoom-image {
   outline: 2px solid var(--clay);
   outline-offset: 5px;
 }
+/* LEBHE product reassurance */
+
+.product-reassurance {
+  width: 100%;
+  max-width: 360px;
+  margin-top: 20px;
+
+  border-top: 1px solid rgba(17, 17, 17, 0.18);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.18);
+}
+
+.product-reassurance__item {
+  min-height: 46px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 11px 2px;
+
+  border-bottom: 1px solid rgba(17, 17, 17, 0.12);
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.68);
+}
+
+.product-reassurance__item:last-child {
+  border-bottom: 0;
+}
+
+.product-reassurance__item i {
+  width: 20px;
+
+  flex: 0 0 auto;
+
+  color: var(--clay);
+  font-size: 15px;
+  text-align: center;
+}
+
+.product-reassurance__item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-reassurance__item a:hover {
+  color: var(--clay);
+}
+
+@media (max-width: 560px) {
+  .product-reassurance {
+    max-width: none;
+  }
+
+  .product-reassurance__item {
+    min-height: 50px;
+  }
+}
